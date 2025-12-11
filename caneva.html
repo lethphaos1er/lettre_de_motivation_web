@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Lettre de motivation – BES Web Development</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg-page: #fffaf0;
+      --text-main: #222222;
+      --purple: #6c5ce7;
+      --purple-dark: #4537a7;
+      --orange: #f39c12;
+      --teal: #00b894;
+      --table-head-bg: #f7d46b;
+      --table-border: #5e3ecb;
+      --section-separator: #f0c057;
+      --header-height: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding-top: var(--header-height); /* espace pour le header fixe */
+    }
+
+    .page {
+      width: 100%;
+      max-width: 960px;
+      padding: 1.5rem 1.25rem 3.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 2.5rem 2.5rem 4rem;
+      }
+    }
+
+    /* ===== HEADER FIXE ===== */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background-color: var(--bg-page);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      display: flex;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .site-header-inner {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .site-header-inner {
+        padding: 0 2.5rem;
+      }
+    }
+
+    .logo-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--purple-dark);
+    }
+
+    .logo-pixel {
+      width: 24px;
+      height: 24px;
+      background:
+        linear-gradient(90deg, var(--purple) 0 50%, var(--purple-dark) 50% 100%);
+      clip-path: polygon(
+        25% 0,
+        75% 0,
+        100% 25%,
+        100% 75%,
+        75% 100%,
+        25% 100%,
+        0 75%,
+        0 25%
+      );
+      image-rendering: pixelated;
+    }
+
+    .main-nav {
+      margin-left: 0.75rem;
+      flex: 1 1 auto;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;           /* wrap pour mobile */
+      justify-content: flex-end;
+      gap: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .nav-list li a {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--purple-dark);
+      background-color: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(108, 92, 231, 0.3);
+    }
+
+    .nav-list li a:hover,
+    .nav-list li a:focus {
+      background-color: var(--purple);
+      color: #ffffff;
+      border-color: var(--purple-dark);
+    }
+
+    /* Loader pixel intégré au header (discret) */
+    .loader-header {
+      display: inline-flex;
+      gap: 0.15rem;
+      margin-left: 0.5rem;
+    }
+
+    .loader-pixel {
+      width: 8px;
+      height: 8px;
+      background-color: var(--purple);
+      image-rendering: pixelated;
+      animation: pixel-bounce 0.8s infinite alternate;
+    }
+
+    .loader-pixel:nth-child(2) {
+      animation-delay: 0.15s;
+      background-color: var(--orange);
+    }
+
+    .loader-pixel:nth-child(3) {
+      animation-delay: 0.3s;
+      background-color: var(--teal);
+    }
+
+    @keyframes pixel-bounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-4px); }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ===== TITRES, SECTIONS ===== */
+
+    header.page-header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .title-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 0.75rem;
+      background:
+        linear-gradient(90deg, var(--purple) 0 50%, var(--purple-dark) 50% 100%);
+      clip-path: polygon(
+        25% 0,
+        75% 0,
+        100% 25%,
+        100% 75%,
+        75% 100%,
+        25% 100%,
+        0 75%,
+        0 25%
+      );
+      image-rendering: pixelated;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--purple-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #555555;
+    }
+
+    hr.separator {
+      border: none;
+      border-top: 3px solid var(--section-separator);
+      margin: 1.5rem 0;
+    }
+
+    main {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      scroll-margin-top: calc(var(--header-height) + 16px);
+      /* décale l’ancre pour que le titre ne colle pas au header */
+    }
+
+    section h2 {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      image-rendering: pixelated;
+      font-size: 0.8rem;
+      color: #ffffff;
+    }
+
+    .chip--purple { background-color: var(--purple); }
+    .chip--orange { background-color: var(--orange); }
+    .chip--teal   { background-color: var(--teal); }
+
+    p + p {
+      margin-top: 0.75rem;
+    }
+
+    /* ===== TABLEAU PROJETS ===== */
+
+    .projects-table-wrapper {
+      overflow-x: auto;
+      border-radius: 6px;
+      border: 2px solid var(--table-border);
+      background-color: #fffdf6;
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.08);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 320px;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background-color: var(--table-head-bg);
+      color: var(--purple-dark);
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      border-bottom: 2px solid var(--table-border);
+    }
+
+    tbody td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid rgba(94, 62, 203, 0.35);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:nth-child(even) td {
+      background-color: rgba(255, 249, 219, 0.6);
+    }
+
+    .project-type {
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin-bottom: 0.75rem;
+    }
+
+    /* Footer fixe sur PC (desktop) */
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 96px; /* réserve la place du footer fixe */
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-page);
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+        padding: 0.75rem 2.5rem 1rem;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER FIXE ===== -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="logo-title">
+        <span class="logo-pixel" aria-hidden="true"></span>
+        <span>BES Web Dev – Candidature</span>
+
+        <span class="loader-header" aria-hidden="true">
+          <span class="loader-pixel"></span>
+          <span class="loader-pixel"></span>
+          <span class="loader-pixel"></span>
+        </span>
+        <span class="sr-only">Chargement visuel</span>
+      </div>
+
+      <!-- ul/li HORIZONTAL – prêt pour un foreach serveur ou JS -->
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul class="nav-list">
+          <!-- Exemple : générer ces <li> en foreach sur les sections -->
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#parcours">Parcours</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#ecole">Pourquoi votre école</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENU ===== -->
+  <div class="page">
+    <header class="page-header">
+      <div class="title-icon" aria-hidden="true"></div>
+      <h1>Lettre de motivation</h1>
+      <p class="subtitle"><!-- subtitle --></p>
+    </header>
+
+    <main>
+      <!-- INTRO -->
+      <section id="intro" aria-labelledby="intro-titre">
+        <p><strong><!-- ville --></strong>,<!-- date --></p>
+        <hr class="separator">
+        <p>
+          <!-- intro -->
+        </p>
+      </section>
+
+      <!-- PARCOURS -->
+      <section id="parcours" aria-labelledby="parcours-titre">
+        <h2 id="parcours-titre">
+          <span class="chip chip--orange" aria-hidden="true">★</span>
+          Parcours
+        </h2>
+        <p>
+          <!-- parcours -->
+        </p>
+        <p>
+          <!-- parcours -->
+        </p>
+      </section>
+
+      <!-- PROJETS -->
+      <section id="projets" aria-labelledby="projets-titre">
+        <h2 id="projets-titre">
+          <span class="chip chip--teal" aria-hidden="true">◆</span>
+          Projets
+        </h2>
+
+        <div class="projects-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Projet A</strong></td>
+                <td class="project-type">Site web</td>
+                <td>
+                  <!-- projet A -->
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Projet B</strong></td>
+                <td class="project-type">Application</td>
+                <td>
+                  <!-- projet B -->
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Projet C</strong></td>
+                <td class="project-type">Prototype</td>
+                <td>
+                  <!-- projet C -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- POURQUOI VOTRE ÉCOLE ? -->
+      <section id="ecole" aria-labelledby="ecole-titre">
+        <h2 id="ecole-titre">
+          <span class="chip chip--purple" aria-hidden="true">?</span>
+          Pourquoi votre école&nbsp;?
+        </h2>
+        <p>
+          Votre programme en développement web, mêlant bases solides et ouverture
+          aux technologies actuelles, représente pour moi l’opportunité de
+          professionnaliser une passion de longue date. L’accent mis sur les
+          projets concrets, le travail en équipe et la veille technologique
+          correspond exactement à ma façon d’apprendre.
+        </p>
+        <p>
+          Intégrer votre BES Web Dev me permettrait de transformer mon univers
+          pop culture et jeu vidéo en une vraie valeur ajoutée : créer des
+          interfaces ludiques, accessibles et engageantes, tout en respectant les
+          standards du web.
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER (fixe sur desktop) -->
+    <footer>
+      <p>
+        Je reste à votre disposition pour un entretien et vous prie d’agréer,
+        Madame, Monsieur, l’expression de mes salutations distinguées.
+      </p>
+      <p><strong>[Ton Prénom Nom]</strong></p>
+      <p>Contact&nbsp;: [email] · [téléphone]</p>
+    </footer>
+  </div>
+</body>
+</html>
