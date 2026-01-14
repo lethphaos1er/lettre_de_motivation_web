@@ -8,6 +8,9 @@
           Apprentissage de Python 3 en auto didacte et via techni-futur.
         </p>
         <p>
+          Proforma formation sur les base du développement de deux mois(java/web)
+        </p>
+        <p>
           Etude de web-dev à l'EAFC Fléron Charlemagne.
         </p>
       </section>
