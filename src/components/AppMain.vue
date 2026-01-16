@@ -8,7 +8,7 @@
     <div class="page">
     <header class="page-header">
       <div class="title-icon" aria-hidden="true"></div>
-      <h1>Lettre de motivation</h1>
+      <h1>Site de présentation</h1>
       <p class="subtitle">Catoul Cedric</p>
     </header>
 
