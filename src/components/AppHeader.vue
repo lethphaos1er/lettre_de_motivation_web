@@ -39,7 +39,8 @@ onBeforeUnmount(() => {
 <template>
   <header ref="headerRef" class="site-header">
     <div class="site-header-inner">
-      <div class="logo-title">
+      <!-- Logo / titre = retour accueil -->
+      <router-link to="/" class="logo-title" @click="closeMenu">
         <span class="logo-pixel" aria-hidden="true"></span>
         <span>BES Web Dev – Candidature</span>
 
@@ -49,16 +50,23 @@ onBeforeUnmount(() => {
           <span class="loader-pixel"></span>
         </span>
         <span class="sr-only">Chargement visuel</span>
-      </div>
+      </router-link>
 
       <!-- MENU DESKTOP (visible >= md) -->
       <nav class="main-nav main-nav--desktop" aria-label="Navigation principale">
         <ul class="nav-list">
           <li v-for="item in menu" :key="item.anchor">
-            <a :href="`#${item.anchor}`">{{ item.name }}</a>
+            <router-link :to="{ path: '/', hash: `#${item.anchor}` }">
+              {{ item.name }}
+            </router-link>
           </li>
+
           <li>
-            <a href="/contact">Contact</a>
+            <router-link to="/lettre">Lettre de motivation</router-link>
+          </li>
+
+          <li>
+            <router-link to="/contact">Contact</router-link>
           </li>
         </ul>
       </nav>
@@ -86,10 +94,24 @@ onBeforeUnmount(() => {
       >
         <ul class="nav-list nav-list--mobile">
           <li v-for="item in menu" :key="item.anchor">
-            <a :href="`#${item.anchor}`" @click="closeMenu">{{ item.name }}</a>
+            <router-link
+              :to="{ path: '/', hash: `#${item.anchor}` }"
+              @click="closeMenu"
+            >
+              {{ item.name }}
+            </router-link>
           </li>
+
           <li>
-            <a href="/contact" @click="closeMenu">Contact</a>
+            <router-link to="/lettre" @click="closeMenu">
+              Lettre de motivation
+            </router-link>
+          </li>
+
+          <li>
+            <router-link to="/contact" @click="closeMenu">
+              Contact
+            </router-link>
           </li>
         </ul>
       </nav>
